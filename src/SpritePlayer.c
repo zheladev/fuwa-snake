@@ -100,7 +100,7 @@ void handleCollision() {
 		if (spr->type == SpriteTab) {
 			if (CheckCollision(THIS, spr)) {
 				score++;
-				SpriteManagerRemove(i);
+
 				//312 = map width, 136 = map height
 				// clamp within map range
 				// TODO: fix rand
@@ -111,7 +111,9 @@ void handleCollision() {
 				new_spawn_x = (new_spawn_x + tile_size) - (new_spawn_x % tile_size);
 				new_spawn_y = (new_spawn_y + tile_size) - (new_spawn_y % tile_size);
 
-				SpriteManagerAdd(SpriteTab, new_spawn_x, new_spawn_y);
+				
+				spr->x = new_spawn_x;
+				spr->y = new_spawn_y;
 			}
 		}
 	}
