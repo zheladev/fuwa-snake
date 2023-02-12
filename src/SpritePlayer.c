@@ -6,10 +6,11 @@
 #include "Print.h"
 #include <rand.h>
 
-const UINT8 anim_walk_u[] = { 2, 0, 1 };
-const UINT8 anim_walk_r[] = { 2, 2, 3 };
-const UINT8 anim_walk_d[] = { 2, 4, 5 };
-const UINT8 anim_walk_l[] = { 2, 6, 7 };
+const UINT8 anim_walk_d[] = { 2, 1, 2 };
+const UINT8 anim_walk_l[] = { 2, 3, 4 };
+const UINT8 anim_walk_r[] = { 2, 5, 6 };
+const UINT8 anim_walk_u[] = { 2, 7, 8 };
+
 
 UINT16 seed;
 UINT8 score;
@@ -18,6 +19,8 @@ UINT8 target_x;
 UINT8 target_y;
 UINT8 map_height = 128;
 UINT8 map_width = 152;
+UINT8 tile_size = 16;
+UINT8 tile_half = 8;
 
 UINT8 new_spawn_x;
 UINT8 new_spawn_y;
@@ -48,8 +51,6 @@ void UPDATE() {
 		}
 	}
 
-	
-
 	// update target position, change direction
 	if (target_x == THIS->x && target_y == THIS->y) {
 		sprite_direction = queued_input;
@@ -66,7 +67,7 @@ void DESTROY() {
 
 void checkGameOver() {
 	if ((target_x <= 0 || target_y <= 0 ||
-		target_x >= map_width || target_y >= map_height)) {
+		target_x >= map_width - tile_half || target_y == map_height - tile_half)) {
 		SetState(StateIntro);
 	}
 }
@@ -75,7 +76,7 @@ void getNextTargetPosition() {
 	switch (sprite_direction) {
 	case J_UP: // y-1
 		target_x = THIS->x;
-		target_y = THIS->y -8;
+		target_y = THIS->y - 8;
 		break;
 	case J_DOWN: // y+1
 		target_x = THIS->x;
@@ -99,18 +100,20 @@ void handleCollision() {
 		if (spr->type == SpriteTab) {
 			if (CheckCollision(THIS, spr)) {
 				score++;
-				SpriteManagerRemove(i);
+
 				//312 = map width, 136 = map height
 				// clamp within map range
 				// TODO: fix rand
-				new_spawn_x = (UINT8)rand() % (UINT8)(map_width - 16);
-				new_spawn_y = (UINT8)rand() % (UINT8)(map_height - 16);
+				new_spawn_x = (UINT8)rand() % (UINT8)(map_width - tile_size);
+				new_spawn_y = (UINT8)rand() % (UINT8)(map_height - tile_size);
 
 				// center and prevent spawning in walls
-				new_spawn_x = (new_spawn_x + 8) - (new_spawn_x % 8);
-				new_spawn_y = (new_spawn_y + 8) - (new_spawn_y % 8);
+				new_spawn_x = (new_spawn_x + tile_size) - (new_spawn_x % tile_size);
+				new_spawn_y = (new_spawn_y + tile_size) - (new_spawn_y % tile_size);
 
-				SpriteManagerAdd(SpriteTab, new_spawn_x, new_spawn_y);
+				
+				spr->x = new_spawn_x;
+				spr->y = new_spawn_y;
 			}
 		}
 	}

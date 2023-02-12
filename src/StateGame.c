@@ -24,15 +24,7 @@ void START() {
 void UPDATE() {
 	UINT8 i;
 	Sprite* spr;
-	//SPRITEMANAGER_ITERATE(i, spr) {
-		//if (spr->type == SpriteTab) {
-		//	DPRINT_POS(0, 0);
-		//	DPrintf("x:%d y:%d  ", spr->x, spr->y);
-		//} else if (spr->type == SpritePlayer) {
-		//	DPRINT_POS(0, 1);
-		//	DPrintf("x:%d y:%d  ", spr->x, spr->y);
-		//}
-	//}
+
 	DPRINT_POS(0, 0);
 	DPrintf("score:%d  ", score);
 }
