@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include",
+                "C:/Users/zheladev/zgb/env/gbdk/include",
+                "C:/Users/zheladev/zgb/env/gbdk",
+                "C:\\Users\\zheladev\\zgb\\common\\include",
+                "C:/Users/zheladev/zgb/common/src"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "__PORT_gbz80"
+            ],
+            "windowsSdkVersion": "8.1",
+            "compilerPath": "",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "${default}",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}

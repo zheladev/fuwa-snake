@@ -1,0 +1,26 @@
+{
+    "files.exclude": {
+        "obj": true,
+        "Debug": true,
+        "DebugColor": true,
+        "Release": true,
+        "ReleaseColor": true,
+        "*.bat": true,
+        "*.log": true,
+        "*.sln": true,
+        "*.vcxproj*": true,
+        "*.db": true,
+        ".gitignore": true,
+        ".vs": true
+    },
+    "files.associations": {
+        "setautobank.h": "c",
+        "math.h": "c",
+        "types.h": "c",
+        "asm/types.h": "c",
+        "zgbmain.h": "c"
+    },
+    "makefile.makeDirectory": "src",
+    "makefile.makePath": "make",
+    "makefile.makefilePath": "src/Makefile"
+}
