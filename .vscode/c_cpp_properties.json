@@ -14,7 +14,8 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "__PORT_gbz80"
+                "__PORT_gbz80",
+                "__PORT_z80"
             ],
             "windowsSdkVersion": "8.1",
             "compilerPath": "",
